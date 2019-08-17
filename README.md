@@ -13,7 +13,7 @@ sudo make install
 
 ### compile app
 
-`g++ src/app.cpp -o bin/app -L /usr/local/lib64 -lGL -lglfw`
+`g++ src/app.cpp -o bin/app -L /usr/local/lib64 -lGL -lglfw -lGLEW`
 
 ## Run
 
