@@ -27,4 +27,4 @@ make clean
 
 ## Run
 
-`LD_LIBRARY_PATH=/usr/local/lib64 ./bin/app`
+`MESA_GL_VERSION_OVERRIDE=4.4 LD_LIBRARY_PATH=/usr/local/lib64 ./bin/app`
