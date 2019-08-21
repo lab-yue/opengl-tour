@@ -93,10 +93,6 @@ int main(void)
         2, 3, 0
     };
 
-    unsigned int vao;
-    GLCall(glGenVertexArrays(1, &vao));
-    GLCall(glBindVertexArray(vao));
-
     VertexArray va;
     VertexBuffer vb(positions, 4 * 2 * sizeof(float));
     VertexBufferLayout layout;
@@ -146,9 +142,10 @@ int main(void)
         glUniform4f(location,r,0.3f,0.8f,1.0f);
 
         va.Bind();
+        //GLCall(glBindVertexArray(vao));
         ib.Bind();
 
-        GLCall(glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,nullptr))
+        GLCall(glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,nullptr));
 
         if (r> 1.0f)
             increment = -0.05f;

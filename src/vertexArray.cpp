@@ -5,6 +5,7 @@
 VertexArray::VertexArray()
 {
     GLCall(glGenVertexArrays(1, &m_RendererID));
+    Bind();
 }
 
 VertexArray::~VertexArray()
@@ -24,17 +25,16 @@ void VertexArray::Unbind() const
 
 void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout) const
 {
-    Bind();
-    vb.Bind();
+    //vb.Bind();
     const auto& elements = layout.GetElements();
     unsigned int offset = 0;
-    //const void* offsetptr = &offset;
+    //const void *offsetptr = &offset;
     for (unsigned int i=0; i < elements.size(); i++)
     {
         const auto& element = elements[i];
         std::cout << "[AttribPointer] " << element.count << " <> " << element.type << " <> " << element.normalized << std::endl;
         GLCall( glEnableVertexAttribArray(i));
-        GLCall( glVertexAttribPointer(i,element.count, element.type, element.normalized, layout.GetStride(), (const void*)&offset));
+        GLCall( glVertexAttribPointer(i,element.count, element.type, GL_FALSE, layout.GetStride(), (const void *)(intptr_t)offset));
         offset += element.count * vertexBufferElement::GetSizeOfType(element.type);
     }
 }
