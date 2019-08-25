@@ -4,6 +4,7 @@
 
 #include "renderer.h"
 #include "vertexBuffer.h"
+#include "vertexBufferLayout.h"
 #include "indexBuffer.h"
 #include "vertexArray.h"
 #include "shader.h"
@@ -58,6 +59,7 @@ int main(void)
     IndexBuffer ib(indices, 6);
 
     Shader shader("./shader/rectangle.glsl");
+    Renderer renderer;
 
     shader.SetUniform4f("u_Color",0.2f,0.3f,0.8f,1.0f);
     
@@ -70,12 +72,7 @@ int main(void)
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.SetUniform4f("u_Color",r,0.3f,0.8f,1.0f);
-    
-        va.Bind();
-        //GLCall(glBindVertexArray(vao));
-        ib.Bind();
-
-        GLCall(glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,nullptr));
+        renderer.Draw(va, ib, shader);
 
         if (r> 1.0f)
             increment = -0.05f;
