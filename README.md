@@ -1,6 +1,6 @@
 # OpenGL Tour
 
-## Compile
+## Compile dependencies
 
 ### compile glfw on linux:
 
@@ -21,10 +21,16 @@ sudo make install
 make clean
 ```
 
-### compile app
-
-`g++ src/*.cpp -o bin/app -L /usr/local/lib64 -lGL -lglfw -lGLEW`
-
 ## Run
 
-`MESA_GL_VERSION_OVERRIDE=4.4 LD_LIBRARY_PATH=/usr/local/lib64 ./bin/app`
+## build and run
+
+`./run.sh`
+
+### compile app
+
+`./run.sh build`
+
+### run built binary
+
+`./run.sh run`
