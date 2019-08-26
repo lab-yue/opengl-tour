@@ -8,6 +8,7 @@
 #include "indexBuffer.h"
 #include "vertexArray.h"
 #include "shader.h"
+#include "texture.h"
 
 int main(void)
 {
@@ -62,6 +63,8 @@ int main(void)
     Renderer renderer;
 
     shader.SetUniform4f("u_Color",0.2f,0.3f,0.8f,1.0f);
+    
+    Texture texture("./texture/");
     
     float r = 0.0f;
     float increment = 0.05f;
