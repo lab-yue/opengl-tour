@@ -1,7 +1,7 @@
 #!/bin/bash
 
 build(){
-    g++ -I stb src/*.cpp vendor/*.cpp -o bin/app -L /usr/local/lib64  -lGL -lglfw -lGLEW
+    g++ -I stb -I imgui src/*.cpp -o bin/app -L /usr/local/lib64  -lGL -lglfw -lGLEW
 }
 
 run(){
