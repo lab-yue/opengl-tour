@@ -72,7 +72,7 @@ int main(void)
 
     IndexBuffer ib(indices, 6);
 
-    glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -2.0f, 2.0f, -1.0f, 1.0f);
+    glm::mat4 proj = glm::ortho(-0.5f, 0.5f, -1.0f, 1.0f, -1.0f, 1.0f);
 
     Shader shader("./shader/logo.glsl");
     Renderer renderer;
