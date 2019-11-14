@@ -47,10 +47,10 @@ int main(void)
     std::cout << glGetString(GL_VERSION) << std::endl;
 
     float positions[] = {
-        -0.5f,-0.5f,
-         0.5f,-0.5f,
-         0.5f, 0.5f,
-        -0.5f, 0.5f
+        -0.5f,-0.5f, 0.0f, 0.0f,
+         0.5f,-0.5f, 1.0f, 0.0f,
+         0.5f, 0.5f, 1.0f, 1.0f,
+        -0.5f, 0.5f, 0.0f, 1.0f
     };
     unsigned int indices[] = {
         0, 1, 2,
@@ -58,20 +58,22 @@ int main(void)
     };
 
     VertexArray va;
-    VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+    VertexBuffer vb(positions, 4 * 4 * sizeof(float));
     VertexBufferLayout layout;
 
+    layout.Push<float>(2);
     layout.Push<float>(2);
     va.AddBuffer(vb, layout);
 
     IndexBuffer ib(indices, 6);
 
-    Shader shader("./shader/rectangle.glsl");
+    Shader shader("./shader/logo.glsl");
     Renderer renderer;
 
-    shader.SetUniform4f("u_Color",0.2f,0.3f,0.8f,1.0f);
+    // shader.SetUniform4f("u_Color",0.2f,0.3f,0.8f,1.0f);
     
-    Texture texture("./texture/");
+    Texture texture("./texture/opengl.png");
+    shader.SetUniform1i("u_Texture", 0);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -94,7 +96,7 @@ int main(void)
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        shader.SetUniform4f("u_Color",r,0.3f,0.8f,1.0f);
+        //shader.SetUniform4f("u_Color",r,0.3f,0.8f,1.0f);
         renderer.Draw(va, ib, shader);
 
         if (r> 1.0f)
