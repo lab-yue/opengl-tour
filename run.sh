@@ -2,6 +2,7 @@
 
 build(){
     g++ -I stb\
+        -I glm\
         -I imgui\
         -I imgui/examples\
         -o bin/app\

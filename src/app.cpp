@@ -4,6 +4,8 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include "renderer.h"
 #include "vertexBuffer.h"
@@ -70,10 +72,13 @@ int main(void)
 
     IndexBuffer ib(indices, 6);
 
+    glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -2.0f, 2.0f, -1.0f, 1.0f);
+
     Shader shader("./shader/logo.glsl");
     Renderer renderer;
 
     // shader.SetUniform4f("u_Color",0.2f,0.3f,0.8f,1.0f);
+    shader.SetUniformMat4f("u_MVP",proj);
     
     Texture texture("./texture/opengl.png");
     shader.SetUniform1i("u_Texture", 0);
